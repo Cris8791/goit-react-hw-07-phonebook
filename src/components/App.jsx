@@ -1,7 +1,12 @@
 // App.jsx
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, deleteContact, setFilter } from '../redux/contactsSlice';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  setFilter,
+} from '../redux/contactsSlice';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
@@ -9,6 +14,9 @@ import { nanoid } from 'nanoid';
 
 const App = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
   const {
     contacts: { items: contacts },
     filter,
