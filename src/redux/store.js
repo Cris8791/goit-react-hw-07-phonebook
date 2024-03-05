@@ -1,3 +1,4 @@
+// store.js
 import { configureStore } from '@reduxjs/toolkit';
 import contactsReducer from './contactsSlice';
 import { combineReducers } from 'redux';
@@ -14,12 +15,13 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
-  contacts: contactsReducer,
+  contacts: contactsReducer, // reducerii tăi
 });
 
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['contacts'], // Adaugă acest rând pentru a exclude reducerul contacts din persistență
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

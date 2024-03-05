@@ -1,4 +1,5 @@
-import React from 'react';
+// App.jsx
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, deleteContact, setFilter } from '../redux/contactsSlice';
 import ContactForm from './ContactForm';
@@ -8,7 +9,10 @@ import { nanoid } from 'nanoid';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { contacts, filter } = useSelector(state => state.contacts);
+  const {
+    contacts: { items: contacts },
+    filter,
+  } = useSelector(state => state.contacts);
 
   const handleAddContact = (name, number) => {
     if (
